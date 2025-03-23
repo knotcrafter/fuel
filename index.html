@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Калькулятор затрат на топливо</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin-top: 50px;
+      }
+      input,
+      button {
+        margin: 10px;
+        padding: 8px;
+        font-size: 18px;
+      }
+      button {
+        background-color: blue;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Калькулятор затрат на топливо</h1>
+
+    <input type="number" id="distance" placeholder="Расстояние (км)" />
+    <input type="number" id="consumption" placeholder="Расход (л/100км)" />
+    <input type="number" id="price" placeholder="Цена за литр (€)" />
+
+    <button onclick="calculateCost()">Рассчитать</button>
+
+    <h2>Затраты: <span id="result">0</span> €</h2>
+
+    <script>
+      function calculateCost() {
+        let distance = parseFloat(document.getElementById("distance").value);
+        let consumption = parseFloat(
+          document.getElementById("consumption").value
+        );
+        let price = parseFloat(document.getElementById("price").value);
+
+        if (!isNaN(distance) && !isNaN(consumption) && !isNaN(price)) {
+          let cost = (distance / 100) * consumption * price;
+          document.getElementById("result").innerText = cost.toFixed(2);
+        } else {
+          alert("Введите корректные данные!");
+        }
+      }
+    </script>
+  </body>
+</html>
