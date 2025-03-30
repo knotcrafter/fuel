@@ -34,6 +34,7 @@
     <button onclick="calculateCost()">Рассчитать</button>
 
     <h2>Затраты: <span id="result">0</span> €</h2>
+    <h2>Потребуется топлива: <span id="fuel">0</span> л</h2>
 
     <script>
       function calculateCost() {
@@ -44,8 +45,11 @@
         let price = parseFloat(document.getElementById("price").value);
 
         if (!isNaN(distance) && !isNaN(consumption) && !isNaN(price)) {
-          let cost = (distance / 100) * consumption * price;
+          let fuelNeeded = (distance / 100) * consumption;
+          let cost = fuelNeeded * price;
+
           document.getElementById("result").innerText = cost.toFixed(2);
+          document.getElementById("fuel").innerText = fuelNeeded.toFixed(2);
         } else {
           alert("Введите корректные данные!");
         }
